@@ -609,8 +609,11 @@ public class InstalledAppDetails extends AppInfoBase
         mState.ensureIcon(mAppEntry);
         final Activity activity = getActivity();
         final boolean isInstantApp = AppUtils.isInstant(mPackageInfo.applicationInfo);
-        final CharSequence summary =
+        final CharSequence installedStatus =
                 isInstantApp ? null : getString(Utils.getInstallationStatus(mAppEntry.info));
+        final CharSequence summary =
+            pkgInfo.isPermissionsPlugin ? "(Plugin) " + installedStatus : "(App) " + installedStatus;
+
         EntityHeaderController.newInstance(activity, this, appSnippet)
                 .setLabel(mAppEntry)
                 .setIcon(mAppEntry)
